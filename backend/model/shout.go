@@ -5,5 +5,6 @@ type Shout struct {
 	UserID string
 	Content string
 	Parent string
+	ReShoutUserID string
 	CreatedAt int64
 }

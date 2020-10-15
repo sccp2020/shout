@@ -20,8 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbaaf162-aa58-44aa-ae58-639d2349b9db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/shout.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hoge/huga/bar.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/shout.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repository/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/shout.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/shout.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,5 +84,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="534" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1602772229434" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1602785287210">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1602785287210" />
   </component>
 </project>
