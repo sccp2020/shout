@@ -64,3 +64,17 @@ paths:
           description: Created
         '409':
           description: screen_id already exist
+    patch:
+      summary: ユーザー情報編集
+      operationId: userEdit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEditRequest'
+      responses:
+        '201':
+          description: Created
+        '409':
+          description: screen_id already exist
