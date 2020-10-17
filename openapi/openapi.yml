@@ -48,3 +48,19 @@ components:
           type: string
       required:
       - content
+paths:
+  /users:
+    post:
+      summary: ユーザー登録
+      operationId: userRegister
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterRequest'
+      responses:
+        '201':
+          description: Created
+        '409':
+          description: screen_id already exist
