@@ -1,0 +1,50 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Shout
+  description: SCCP 2020 Sample Project
+servers:
+  - url: http://localhost:8080
+components:
+  schemas:
+    UserRegisterRequest:
+      properties:
+        screen_id:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        biography:
+          type: string
+      required:
+      - screen_id
+      - name
+      - password
+    UserEditRequest:
+      properties:
+        screen_id:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        biography:
+          type: string
+    UserLoginRequest:
+      properties:
+        screen_id:
+          type: string
+        password:
+          type: string
+      required:
+      - screen_id
+      - password
+    CreateShoutRequest:
+      properties:
+        content:
+          type: string
+        parent:
+          type: string
+      required:
+      - content
