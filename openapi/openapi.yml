@@ -78,3 +78,20 @@ paths:
           description: Created
         '409':
           description: screen_id already exist
+  /users/image:
+    put:
+      summary: ユーザープロフィール画像変更
+      operationId: userImageChange
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Created
