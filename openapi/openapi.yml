@@ -260,3 +260,15 @@ paths:
           description: Shout Not Found
         '409':
           description: Already Liked
+    delete:
+      summary: いいね取り消し
+      operationId: unlike
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Unlike Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Unlike Failure
