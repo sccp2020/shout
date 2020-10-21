@@ -222,6 +222,17 @@ paths:
       responses:
         '201':
           description: Post Shout Success
+  /shouts/{id}:
+    delete:
+      summary: シャウト削除
+      operationId: deleteShout
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Delete Shout Success
+        '404':
+          description: Shout Not Found
   /shouts/{id}/reshout:
     post:
       summary: リシャウト
