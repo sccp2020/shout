@@ -1,0 +1,334 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Shout
+  description: SCCP 2020 Sample Project
+servers:
+  - url: http://localhost:8080
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    UserRegisterRequest:
+      properties:
+        screen_id:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        biography:
+          type: string
+      required:
+      - screen_id
+      - name
+      - password
+    UserEditRequest:
+      properties:
+        screen_id:
+          type: string
+        name:
+          type: string
+        password:
+          type: string
+        biography:
+          type: string
+    UserLoginRequest:
+      properties:
+        screen_id:
+          type: string
+        password:
+          type: string
+      required:
+      - screen_id
+      - password
+    UserLoginResponse:
+      properties:
+        token:
+          type: string
+    CreateShoutRequest:
+      properties:
+        content:
+          type: string
+        parent:
+          type: string
+      required:
+      - content
+    User:
+      properties:
+        id:
+          type: string
+        screen_id:
+          type: string
+        name:
+          type: string
+        biography:
+          type: string
+        profile_image_url:
+          type: string
+    Shout:
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        parent_id:
+          type: string
+        content:
+          type: string
+        reshout_user:
+          $ref: '#/components/schemas/User'
+        created_at:
+          type: string
+    ShoutsResponse:
+      properties:
+        shouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shout'
+paths:
+  /users:
+    post:
+      summary: ユーザー登録
+      operationId: userRegister
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterRequest'
+      responses:
+        '201':
+          description: Created
+        '409':
+          description: screen_id already exist
+    patch:
+      summary: ユーザー情報編集
+      operationId: userEdit
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEditRequest'
+      responses:
+        '201':
+          description: Created
+        '409':
+          description: screen_id already exist
+  /users/image:
+    put:
+      summary: ユーザープロフィール画像変更
+      operationId: userImageChange
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Created
+  /users/login:
+    post:
+      summary: ユーザーログイン
+      operationId: userLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+      responses:
+          '204':
+            description: Login Success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UserLoginResponse'
+          '401':
+            description: Login Failure
+  /users/{id}/follow:
+    post:
+      summary: ユーザーフォロー
+      operationId: userFollow
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: User ID
+      responses:
+        '204':
+          description: Follow Success
+        '404':
+          description: User Not Found
+        '409':
+          description: Already Followed
+    delete:
+      summary: ユーザーフォロー解除
+      operationId: userUnfollow
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: User ID
+      responses:
+        '204':
+          description: Unfollow Success
+        '404':
+          description: User Not Found
+        '409':
+          description: Unfollow Failure
+  /shouts:
+    get:
+      summary: タイムライン取得
+      operationId: getShouts
+      security:
+        - Bearer: []
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of shouts to return
+        - in: query
+          name: last_shout_id
+          schema:
+            type: string
+          description: Fetched tail shout id
+      responses:
+        '200':
+          description: Latest TimeLine Shouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoutResponse'
+    post:
+      summary: シャウト投稿
+      operationId: postShout
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShoutRequest'
+      responses:
+        '201':
+          description: Post Shout Success
+  /shouts/{id}:
+    delete:
+      summary: シャウト削除
+      operationId: deleteShout
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
+      responses:
+        '204':
+          description: Delete Shout Success
+        '404':
+          description: Shout Not Found
+  /shouts/{id}/reshout:
+    post:
+      summary: リシャウト
+      operationId: reshout
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
+      responses:
+        '204':
+          description: Reshout Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Already Reshouted
+    delete:
+      summary: リシャウト取り消し
+      operationId: deleteReshout
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
+      responses:
+        '204':
+          description: Delete Reshout Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Delete Reshout Failure
+  /shouts/{id}/like:
+    post:
+      summary: いいね
+      operationId: like
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
+      responses:
+        '204':
+          description: Like Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Already Liked
+    delete:
+      summary: いいね取り消し
+      operationId: unlike
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
+      responses:
+        '204':
+          description: Unlike Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Unlike Failure
