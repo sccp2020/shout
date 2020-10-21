@@ -235,3 +235,15 @@ paths:
           description: Shout Not Found
         '409':
           description: Already Reshouted
+    delete:
+      summary: リシャウト取り消し
+      operationId: deleteReshout
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Delete Reshout Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Delete Reshout Failure
