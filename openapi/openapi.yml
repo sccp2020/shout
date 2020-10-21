@@ -208,3 +208,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ShoutResponse'
+    post:
+      summary: シャウト投稿
+      operationId: postShout
+      security:
+        - Bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShoutRequest'
+      responses:
+        '201':
+          description: Post Shout Success
