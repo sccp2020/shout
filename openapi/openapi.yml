@@ -6,6 +6,11 @@ info:
 servers:
   - url: http://localhost:8080
 components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     UserRegisterRequest:
       properties:
@@ -40,6 +45,10 @@ components:
       required:
       - screen_id
       - password
+    UserLoginResponse:
+      properties:
+        token:
+          type: string
     CreateShoutRequest:
       properties:
         content:
@@ -67,6 +76,8 @@ paths:
     patch:
       summary: ユーザー情報編集
       operationId: userEdit
+      security:
+        - Bearer: []
       requestBody:
         required: true
         content:
@@ -82,6 +93,8 @@ paths:
     put:
       summary: ユーザープロフィール画像変更
       operationId: userImageChange
+      security:
+        - Bearer: []
       requestBody:
         required: true
         content:
@@ -108,5 +121,9 @@ paths:
       responses:
           '204':
             description: Login Success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UserLoginResponse'
           '401':
             description: Login Failure
