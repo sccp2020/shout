@@ -57,6 +57,38 @@ components:
           type: string
       required:
       - content
+    User:
+      properties:
+        id:
+          type: string
+        screen_id:
+          type: string
+        name:
+          type: string
+        biography:
+          type: string
+        profile_image_url:
+          type: string
+    Shout:
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        parent_id:
+          type: string
+        content:
+          type: string
+        reshout_user:
+          $ref: '#/components/schemas/User'
+        created_at:
+          type: string
+    ShoutsResponse:
+      properties:
+        shouts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shout'
 paths:
   /users:
     post:
@@ -152,3 +184,27 @@ paths:
           description: User Not Found
         '409':
           description: Unfollow Failure
+  /shouts:
+    get:
+      summary: タイムライン取得
+      operationId: getShouts
+      security:
+        - Bearer: []
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of shouts to return
+        - in: query
+          name: last_shout_id
+          schema:
+            type: string
+          description: Fetched tail shout id
+      responses:
+        '200':
+          description: Latest TimeLine Shouts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoutResponse'
