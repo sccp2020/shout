@@ -127,3 +127,16 @@ paths:
                   $ref: '#/components/schemas/UserLoginResponse'
           '401':
             description: Login Failure
+  /users/{id}/follow:
+    post:
+      summary: ユーザーフォロー
+      operationId: userFollow
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Follow Success
+        '404':
+          description: User Not Found
+        '409':
+          description: Already Followed
