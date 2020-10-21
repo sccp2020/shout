@@ -165,6 +165,13 @@ paths:
       operationId: userFollow
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: User ID
       responses:
         '204':
           description: Follow Success
@@ -177,6 +184,13 @@ paths:
       operationId: userUnfollow
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: User ID
       responses:
         '204':
           description: Unfollow Success
@@ -228,6 +242,13 @@ paths:
       operationId: deleteShout
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
       responses:
         '204':
           description: Delete Shout Success
@@ -239,6 +260,13 @@ paths:
       operationId: reshout
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
       responses:
         '204':
           description: Reshout Success
@@ -251,6 +279,13 @@ paths:
       operationId: deleteReshout
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
       responses:
         '204':
           description: Delete Reshout Success
@@ -264,6 +299,13 @@ paths:
       operationId: like
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
       responses:
         '204':
           description: Like Success
@@ -276,6 +318,13 @@ paths:
       operationId: unlike
       security:
         - Bearer: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: Shout ID
       responses:
         '204':
           description: Unlike Success
