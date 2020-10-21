@@ -247,3 +247,16 @@ paths:
           description: Shout Not Found
         '409':
           description: Delete Reshout Failure
+  /shouts/{id}/like:
+    post:
+      summary: いいね
+      operationId: like
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Like Success
+        '404':
+          description: Shout Not Found
+        '409':
+          description: Already Liked
