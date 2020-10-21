@@ -140,3 +140,15 @@ paths:
           description: User Not Found
         '409':
           description: Already Followed
+    delete:
+      summary: ユーザーフォロー解除
+      operationId: userUnfollow
+      security:
+        - Bearer: []
+      responses:
+        '204':
+          description: Unfollow Success
+        '404':
+          description: User Not Found
+        '409':
+          description: Unfollow Failure
