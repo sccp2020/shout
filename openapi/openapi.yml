@@ -95,3 +95,18 @@ paths:
       responses:
         '201':
           description: Created
+  /users/login:
+    post:
+      summary: ユーザーログイン
+      operationId: userLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+      responses:
+          '204':
+            description: Login Success
+          '401':
+            description: Login Failure
