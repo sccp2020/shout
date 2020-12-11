@@ -103,4 +103,21 @@
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="WindowStateProjectService">
+    <state x="534" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602772229434">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="534" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1602772229434" />
+    <state x="0" y="0" width="1398" height="881" key="dock-window-1" timestamp="1602790322269">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="0" width="1398" height="881" key="dock-window-1/0.0.1440.900@0.0.1440.900" timestamp="1602790322269" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1602790737959">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1602790737959" />
+  </component>
+>>>>>>> 51a46284c8f427d1c93be23a6947f782878698a5
 </project>

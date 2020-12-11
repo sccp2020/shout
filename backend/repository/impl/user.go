@@ -3,6 +3,7 @@ package impl
 import (
 	"context"
 	"fmt"
+
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/sccp2020/shout/backend/model"
@@ -14,7 +15,7 @@ type UserRepository struct {
 
 func (u UserRepository) GetUser(ctx context.Context, id string) (*model.User, error) {
 	user := model.User{}
-	err := u.db.GetContext(ctx,  &user, "SELECT * FROM users WHERE id = ?", id)
+	err := u.db.GetContext(ctx, &user, "SELECT * FROM users WHERE id = ?", id)
 	return &user, err
 }
 

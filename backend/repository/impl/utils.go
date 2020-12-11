@@ -2,6 +2,7 @@ package impl
 
 import (
 	"fmt"
+
 	"github.com/jmoiron/sqlx"
 )
 
@@ -11,4 +12,3 @@ func rowExists(db *sqlx.DB, query string, args ...interface{}) (bool, error) {
 	err := db.QueryRow(query, args...).Scan(&exists)
 	return exists, err
 }
-
