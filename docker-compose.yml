@@ -9,3 +9,15 @@ services:
       SWAGGER_JSON: /openapi/openapi.yml
     volumes:
       - ./openapi:/openapi
+  db:
+    image: mysql:latest
+    volumes:
+      - ./backend/schema:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_database
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 3306:3306

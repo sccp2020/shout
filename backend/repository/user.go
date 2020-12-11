@@ -10,8 +10,8 @@ type UserRepository interface {
 	CreateUser(ctx context.Context, user *model.User) error
 	UpdateUser(ctx context.Context, user *model.User) (*model.User, error)
 	DeleteUser(ctx context.Context, id string) error
-	GetFollowers(ctx context.Context, id string, cursor string, limit int64) ([]*model.User, error)
-	GetFollowees(ctx context.Context, id string, cursor string, limit int64) ([]*model.User, error)
+	GetFollowers(ctx context.Context, id string, limit int64, offset int64) ([]*model.User, error)
+	GetFollowees(ctx context.Context, id string, limit int64, offset int64) ([]*model.User, error)
 	FollowUser(ctx context.Context, id string, target string) error
 	UnFollowUser(ctx context.Context, id string, target string) error
 }
